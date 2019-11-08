@@ -1,0 +1,10 @@
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+#footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

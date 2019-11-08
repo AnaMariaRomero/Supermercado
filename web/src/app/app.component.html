@@ -1,0 +1,33 @@
+<app-header></app-header>
+<mat-card>
+  <div>
+    <mat-card class="muestra-tiempo">
+      Aqui visualizará el tiempo estimado de espera
+    <div class="example-button-row">
+        <button mat-raised-button color="warn">Solicitar Turno</button>
+    </div>
+  </mat-card>
+</div>
+
+<div>
+  <mat-card>
+    <mat-accordion>
+    <mat-expansion-panel *ngFor="let turno of turnos | async">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Codigo: {{turno.codigo}}
+          </mat-panel-title>
+          <mat-panel-description *ngIf="!turno.codigo">
+            Disponible
+          </mat-panel-description>
+          <mat-panel-description *ngIf="turno.codigo">
+              Tiempo de Llegada: {{turno.tiempoLlegada}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Tiempo de espera: {{turno.tiempoEspera}}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+  </mat-card>
+</div>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

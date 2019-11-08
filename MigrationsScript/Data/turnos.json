@@ -1,0 +1,8 @@
+{ 
+	"turnos":{
+		"turno-01":
+			{"tiempoEspera":"10","tiempoLlegada":"9","codigo":"00001"},
+ 		"turno-02":
+			{"tiempoEspera":"20","tiempoLlegada":"9:15","codigo":"00002"}
+		}
+}
