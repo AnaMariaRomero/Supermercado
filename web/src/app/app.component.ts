@@ -21,4 +21,13 @@ export class AppComponent {
     this.turnos.subscribe(resultado => console.log("turnos",resultado));
       }
 
+  crearCupon(){
+    crearCodigo();
+  }
+
+  imprimirCupon(){
+  }
+
+  crearCodigo(){
+  }
 }
