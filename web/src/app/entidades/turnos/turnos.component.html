@@ -1,0 +1,37 @@
+<mat-card>
+  <div>
+    <mat-card class="muestra-tiempo">
+      Aqui visualizará el tiempo estimado de espera
+    <div class="example-button-row">
+        <button mat-raised-button color="warn" (click)="solicitarTurno()">Solicitar Turno</button>
+    </div>
+  </mat-card>
+</div>
+<div>
+  <mat-card class="muestra-tiempo">
+   IMPRESION CUPON:
+   <br>Codigo: {{nuevoCodigo}}
+   <br>Fecha y Hora: {{horaLlegada}}
+   <br>Tiempo estimado de espera:
+</mat-card>
+</div>
+<div>
+  <mat-card>
+    <mat-accordion>
+    <mat-expansion-panel *ngFor="let turno of turnos">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Codigo: {{turno.code}}
+          </mat-panel-title>
+          <mat-panel-description *ngIf="!turno.code">
+            Disponible
+          </mat-panel-description>
+          <mat-panel-description *ngIf="turno.code">
+              Tiempo de Llegada: {{turno.getTimeFormat()}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Tiempo de espera: {{turno.standbyTime}}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+  </mat-card>
+</div>

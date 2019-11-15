@@ -18,6 +18,7 @@ import { DataSource } from '@angular/cdk/table';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { NgModule } from '@angular/core';
+import { TurnosComponent } from './entidades/turnos/turnos.component';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { environment } from '../environments/environment';
     AppComponent,
     FooterComponent,
     HeaderComponent,
+    TurnosComponent,
   ],
   imports: [
     BrowserModule,
