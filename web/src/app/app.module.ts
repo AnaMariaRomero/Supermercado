@@ -1,3 +1,7 @@
+/*desde este archivo se descargan todas las herramientas que utilicemos para decoracion
+u otros servicios.
+Además, se declaran las importaciones de los demas componentes/entidades que necesitemos para modelar
+nuestra pagina*/
 import {
 MatButtonModule,
 MatCardModule,

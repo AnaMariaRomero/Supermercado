@@ -1,3 +1,7 @@
+/*ESTE archivo es para comunicarnos con la base de datos.
+Se pide la key de la base y otros condimentos más.
+El paso a paso de esto se saca de internet, no me acuerdo el 100%
+de los pasos porque los haces una vez*/
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.

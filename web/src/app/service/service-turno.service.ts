@@ -34,12 +34,13 @@ export class ServiceTurnoService {
       .snapshotChanges()
       .pipe(
         map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
-      ).subscribe(arg =>
+      )
+      .subscribe(arg => {
         arg.forEach(turno => {
           listado.push(new TurnoComponent(turno));
-        })
+        });
         result(listado);
-      },this.handleError)
+      }, this.handleError);
   }
   /*obtenemos un turno */
   obtenerTurno(key: string, turnoCargado){
