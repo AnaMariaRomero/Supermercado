@@ -17,6 +17,8 @@ export class ServiceTurnoService {
   es una lista de turnos*/
   turnosRef: AngularFireList<TurnoComponent> = null;
   turnos: any;
+  time: number = 0;
+  interval;
   /*en el constructor debe iniciar la referencia a la lista
   de la base */
   constructor(private baseDatos: AngularFireDatabase) {
@@ -27,21 +29,55 @@ export class ServiceTurnoService {
    }
 
    /* ahora, queremos obtener la lista de turnos para poder mostrarlos */
-   obtenerTurnos(result) {
-     var listado = Array<TurnoComponent>();
+   obtenerTurnosMostrar(listadoMostrar) {
      /*usamos snapchotChanges para captura de datos y poder modificarlos */
      this.turnosRef
       .snapshotChanges()
       .pipe(
         map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
-      )
-      .subscribe(arg => {
-        arg.forEach(turno => {
+      ).subscribe(arg => {
+        var listado = Array<TurnoComponent>();
+        arg.forEach(function(turno){
           listado.push(new TurnoComponent(turno));
         });
-        result(listado);
+        listadoMostrar(this.ordenarListado(listado));
       }, this.handleError);
   }
+
+  obtenerTurnosEditar(listadoEditar) {
+    /*usamos snapchotChanges para captura de datos y poder modificarlos */
+    this.turnosRef
+     .snapshotChanges()
+     .pipe(
+       map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
+     ).subscribe(arg => {
+       var listado = Array<TurnoComponent>();
+       arg.forEach(function(turno){
+         listado.push(new TurnoComponent(turno));
+       });
+       listadoEditar(listado);
+     }, this.handleError);
+ }
+
+  /*ordenamos una lista*/
+  ordenarListado(listado: any){
+    const turnosCompletos = Array<TurnoComponent>();
+    var indicePasada = 0;
+    while (indicePasada < 10){
+      if(listado[indicePasada]){
+        turnosCompletos.push(listado[indicePasada]);
+      }else{
+        turnosCompletos.push(new TurnoComponent({
+          'codigo': '',
+          'tiempoEspera': '',
+          'tiempoLlegada': ''}));
+      }
+      indicePasada = indicePasada + 1;
+    }
+    return turnosCompletos;
+    /*ordenar por quien llego primero, o sea, el tiempo menor de llegada, sin contar el 0*/
+  }
+
   /*obtenemos un turno */
   obtenerTurno(key: string, turnoCargado){
     return this.baseDatos.object(`turnos/${key}`).snapshotChanges()
@@ -54,9 +90,18 @@ export class ServiceTurnoService {
     this.turnosRef.update(key, value).catch(error => this.handleError(error));
   }
 
+  crearTurno(turno: TurnoComponent, onSaved): void {
+    var turnoKey = this.turnosRef.push(turno).key;
+    console.log(turnoKey);
+    onSaved(turnoKey);
+  }
+
+  borrarTurno(key: string): void {
+    console.log("llego aca");
+    this.turnosRef.remove(key).catch(error => this.handleError(error));
+  }
   /*esto nos avisa en consola si ocurre algun error en el proceso y de que tipo */
   private handleError(error) {
     console.log(error);
   }
-
 }

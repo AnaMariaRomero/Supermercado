@@ -7,11 +7,14 @@ MatButtonModule,
 MatCardModule,
 MatDividerModule,
 MatExpansionModule,
+MatInputModule,
+MatDialogModule,
 MatListModule,
 MatTableModule,
 MatToolbarModule,
+MatFormFieldModule,
 } from '@angular/material';
-
+import { FormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
 import { AppComponent } from './app.component';
@@ -24,6 +27,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { NgModule } from '@angular/core';
 import { TurnosComponent } from './entidades/turnos/turnos.component';
 import { environment } from '../environments/environment';
+import { EliminacionTurnoComponent } from './entidades/eliminacion-turno/eliminacion-turno.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,7 @@ import { environment } from '../environments/environment';
     FooterComponent,
     HeaderComponent,
     TurnosComponent,
+    EliminacionTurnoComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,11 +47,16 @@ import { environment } from '../environments/environment';
     MatListModule,
     MatTableModule,
     MatButtonModule,
+    MatDialogModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     BrowserAnimationsModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[EliminacionTurnoComponent],
 })
 export class AppModule { }

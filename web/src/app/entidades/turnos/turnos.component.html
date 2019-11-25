@@ -6,31 +6,35 @@
         <button mat-raised-button color="warn" (click)="solicitarTurno()">Solicitar Turno</button>
     </div>
   </mat-card>
-</div>
+  <mat-card>
+    <div>
+      <button mat-raised-button color="primary" (click)="eliminarTurno()">Eliminar Turno</button>
+      <p *ngIf="!codigoExitente">El turno asociado con el codigo: {{codigo}} ha sido eliminado satisfactoriamente.</p>
+    </div>
 <div>
   <mat-card class="muestra-tiempo">
    IMPRESION CUPON:
    <br>Codigo: {{nuevoCodigo}}
-   <br>Fecha y Hora: {{horaLlegada}}
-   <br>Tiempo estimado de espera:
+   <br>Fecha y Hora: {{horaLlegada | date :'short'}}
+   <br>Tiempo estimado de espera: {{tiempoEspera}}
 </mat-card>
 </div>
 <div>
   <mat-card>
     <mat-accordion>
-    <mat-expansion-panel *ngFor="let turno of turnos">
+    <mat-expansion-panel *ngFor="let turno of turnosMostrar, index as i">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Codigo: {{turno.code}}
+          Turno: {{i}}
+            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+            Tiempo de espera: {{turno.tiempoEspera}}
           </mat-panel-title>
-          <mat-panel-description *ngIf="!turno.code">
+          <mat-panel-description *ngIf="!turno.codigo">
             Disponible
           </mat-panel-description>
-          <mat-panel-description *ngIf="turno.code">
-              Tiempo de Llegada: {{turno.getTimeFormat()}}
-            </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>Tiempo de espera: {{turno.standbyTime}}</p>
+        <p>Tiempo de llegada: {{turno.tiempoLlegada | date:'shortTime'}}</p>
+        <p *ngIf="turno.codigo">Codigo: {{turno.codigo}}</p>
     </mat-expansion-panel>
   </mat-accordion>
   </mat-card>

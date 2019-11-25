@@ -3,9 +3,9 @@ Sirve para hacernos referencia con el turno que tenemos en la
 base de datos*/
 export class TurnoComponent {
   public key: string;
-  public code: string;
-  public standbyTime: string;
-  public arrivalTime: Date;
+  public codigo: string;
+  public tiempoEspera: string;
+  public tiempoLlegada: Date;
 
   /*el constructor nos ayuda a traer el elemento de la base y construirlo en
   base a ese. Lo "traducimos" al formato que usamos en nuestro modelo.
@@ -13,14 +13,14 @@ export class TurnoComponent {
   Por tema de que se entiendan y sean más intuitivos los metodos, dejamos en español los metodos.*/
   constructor(result) {
     this.key = result.key;
-    this.code = result.codigo;
-    this.standbyTime = result.tiempoEspera;
-    this.arrivalTime = result.tiempoLlegada;
+    this.codigo = result.codigo;
+    this.tiempoEspera = result.tiempoEspera;
+    this.tiempoLlegada = result.tiempoLlegada;
    }
 
    getTimeFormat(): string {
-    this.arrivalTime = new Date();
-    return this.arrivalTime.getHours() + ':' + this.arrivalTime.getMinutes() + ' hs'
+    this.tiempoLlegada = new Date();
+    return this.tiempoLlegada.getHours() + ':' + this.tiempoLlegada.getMinutes() + ' hs'
   }
 
 }

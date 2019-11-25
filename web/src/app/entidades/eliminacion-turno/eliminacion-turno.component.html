@@ -1,0 +1,10 @@
+<div mat-dialog-content>
+  <p>Ingrese el codigo de su turno: </p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.codigo">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cerrar()">No</button>
+  <button mat-button [mat-dialog-close]="data.codigo" cdkFocusInitial>Ok</button>
+</div>
